@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Set the repository URL
+REPO_URL="https://github.com/OpenAsar/arrpc.git"
+
+# Clone the repository if it doesn't exist
+if [ ! -d "arrpc" ]; then
+  echo "Cloning arrpc repository..."
+  git clone $REPO_URL
+else
+  echo "Repository already cloned."
+fi
+
+# Navigate to the repository folder
+cd arrpc || exit
+
 # Install pkg globally if not already installed
 echo "Installing pkg..."
 npm install -g pkg
@@ -8,7 +22,7 @@ npm install -g pkg
 echo "Installing project dependencies..."
 npm install
 
-# Check for vulnerabilities
+# Check for vulnerabilities and fix them
 echo "Checking for vulnerabilities..."
 npm audit fix
 
